@@ -1,0 +1,13 @@
+{
+	"name": "barbes-tati-concept",
+	"private": true,
+	"description": "Website refresh concept for Barbès (1300 Park Ave) and its sister café, Café Tati (401 Bloomfield St), Hoboken NJ",
+	"scripts": {
+		"dev": "wrangler dev",
+		"images": "./scripts/images.sh",
+		"deploy": "wrangler deploy"
+	},
+	"devDependencies": {
+		"wrangler": "^4.158.0"
+	}
+}

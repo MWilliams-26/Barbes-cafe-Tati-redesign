@@ -1,0 +1,15 @@
+# Concept preview: keep it out of search results so it never competes with the restaurants' real sites.
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+# Styles and scripts change while the concept is reviewed; keep them fresh.
+/assets/css/*
+  Cache-Control: public, max-age=300
+
+/assets/js/*
+  Cache-Control: public, max-age=300

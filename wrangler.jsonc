@@ -1,0 +1,13 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	// Assets-only Worker: Cloudflare serves the static site in public/ directly.
+	"name": "barbes-tati-concept",
+	"compatibility_date": "2026-11-07",
+	"assets": {
+		"directory": "./public",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "404-page"
+	},
+	"workers_dev": true,
+	"preview_urls": true
+}
