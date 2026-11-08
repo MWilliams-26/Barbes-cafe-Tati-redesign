@@ -18,10 +18,8 @@ barbes=(
 	"moules moules-mariniere.3xs15yk_-0kr0.jpg 600,1000"
 	"tagine-lid shrimp-tagine-lid-lift.0nmfwcp2c2xo2.jpg 600,1000"
 	"coupe cocktail-barbes.1rnkqt3-fgnwy.jpg 600,1000"
-	"cocktail green-cocktail.22s63sk84b7c6.jpg 600,1000"
 	"wine pinot-noir-bottle.11ltp0dgnl2tz.jpg 600,1000"
 	"wedding wedding-embrace.30_8a27-o3oas.jpg 600,1000"
-	"logo logo.2pwi1yvy85xzb.jpg 160,320"
 )
 for row in "${barbes[@]}"; do
 	read -r name file widths <<<"$row"
@@ -46,8 +44,6 @@ done
 # name  post-id  crop (WxH+X+Y on the 360x640 preview)
 tati_ig=(
 	"bears DXP0OhOCLv9 361x250+0+0"
-	"tagine DW9ypc5Df_B 361x290+0+345"
-	"copper DXcsL4XDP5F 361x250+0+0"
 )
 for row in "${tati_ig[@]}"; do
 	read -r name id crop <<<"$row"

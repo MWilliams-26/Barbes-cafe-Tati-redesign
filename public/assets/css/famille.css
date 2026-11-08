@@ -1,6 +1,6 @@
-/* La famille: what Barbès and Café Tati share.
-   Each house sets its own palette and display face in barbes.css or tati.css;
-   the components below read those variables, so the family looks related but never identical. */
+/* La famille: the system Barbès and Café Tati share.
+   One type pairing, one grid, hairline rules and quiet controls. Each house sets its own palette
+   in barbes.css or tati.css; the components below read those variables. */
 
 *,
 *::before,
@@ -11,35 +11,23 @@
 :root {
 	--text: "Instrument Sans", system-ui, sans-serif;
 	--serif: "Instrument Serif", Georgia, serif;
-	--wrap: 1200px;
-	--gutter: clamp(1.25rem, 4vw, 3rem);
-	--radius: 14px;
+	--wrap: 1280px;
+	--gutter: clamp(1.25rem, 4vw, 3.5rem);
+	--ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
 	/* Shared family colours, used where one house points at the other. */
-	--barbes-nuit: #1c1714;
-	--barbes-ocre: #c9a15b;
-	--barbes-bordeaux: #7a2e26;
-	--tati-blush: #ecd8d0;
-	--tati-rose: #9a4f57;
-	--tati-vert: #2e4636;
-	--tati-or: #a8874f;
-	--tati-ivoire: #faf6ef;
-
-	/* Vichy (gingham): two soft stripes; where they cross the check is darker. Café Tati's quiet nod to its Paris namesake. */
-	--vichy-ink: rgb(196 140 136 / 0.22);
-	--vichy: linear-gradient(90deg, var(--vichy-ink) 50%, transparent 0), linear-gradient(var(--vichy-ink) 50%, transparent 0);
-}
-
-.vichy {
-	background-color: #fff;
-	background-image: var(--vichy);
-	background-size: var(--vichy-size, 22px) var(--vichy-size, 22px);
+	--barbes-nuit: #1a1512;
+	--barbes-ocre: #c4a06a;
+	--barbes-bordeaux: #6f2b24;
+	--tati-ivoire: #f7f3ec;
+	--tati-vert: #2c3f33;
+	--tati-rose: #8e4f51;
 }
 
 html {
 	-webkit-text-size-adjust: 100%;
 	scroll-behavior: smooth;
-	scroll-padding-top: 6rem;
+	scroll-padding-top: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -81,20 +69,22 @@ a {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
 	margin: 0;
-	font-family: var(--display);
+	font-family: var(--serif);
 	font-weight: 400;
-	line-height: 1.08;
-	letter-spacing: -0.005em;
+	line-height: 1.04;
+	letter-spacing: -0.01em;
 	text-wrap: balance;
 }
 
-/* Emphasis in headings is a colour change, never italics: easier to read for everyone. */
+/* Emphasis in headings is a change of colour, never italics. */
 h1 em,
 h2 em,
 h3 em {
 	font-style: normal;
+	color: var(--accent);
 }
 
 p {
@@ -112,8 +102,7 @@ p {
 	left: 1rem;
 	top: -4rem;
 	z-index: 100;
-	padding: 0.6rem 1rem;
-	border-radius: 999px;
+	padding: 0.7rem 1rem;
 	background: var(--ink);
 	color: var(--paper);
 	font-weight: 600;
@@ -124,7 +113,7 @@ p {
 }
 
 :focus-visible {
-	outline: 3px solid var(--focus, currentColor);
+	outline: 2px solid var(--focus, currentColor);
 	outline-offset: 3px;
 }
 
@@ -137,73 +126,125 @@ p {
 	white-space: nowrap;
 }
 
-.eyebrow {
-	font-size: 0.82rem;
+/* Small capitals used for labels, indices and meta lines. */
+.label {
+	font-size: 0.8rem;
 	font-weight: 600;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 }
+.index {
+	display: flex;
+	align-items: center;
+	gap: 0.9rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.index::before {
+	content: attr(data-n);
+	font-variant-numeric: tabular-nums;
+	color: var(--accent);
+}
+.index::after {
+	content: "";
+	flex: 0 0 3rem;
+	height: 1px;
+	background: currentColor;
+	opacity: 0.5;
+}
 
-/* ---------- Buttons ---------- */
+/* ---------- Controls ---------- */
 
 .btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.5em;
-	min-height: 48px;
-	padding: 0.7rem 1.4rem;
-	border: 2px solid var(--btn-bg, var(--ink));
-	border-radius: var(--btn-radius, 999px);
+	gap: 0.6em;
+	min-height: 50px;
+	padding: 0.8rem 1.6rem;
+	border: 1px solid var(--btn-bg, var(--ink));
+	border-radius: 2px;
 	background: var(--btn-bg, var(--ink));
 	color: var(--btn-fg, var(--paper));
-	font: 600 0.98rem/1.1 var(--text);
+	font: 600 0.82rem/1 var(--text);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
 	text-decoration: none;
 	cursor: pointer;
 	transition:
-		transform 0.15s ease,
-		background-color 0.15s ease,
-		color 0.15s ease;
+		background-color 0.25s var(--ease),
+		color 0.25s var(--ease),
+		border-color 0.25s var(--ease);
 }
 .btn:hover {
-	transform: translateY(-1px);
+	background: transparent;
+	color: var(--btn-bg, var(--ink));
 }
 .btn--ghost {
 	background: transparent;
 	color: var(--btn-bg, var(--ink));
 }
+.btn--ghost:hover {
+	background: var(--btn-bg, var(--ink));
+	color: var(--btn-fg, var(--paper));
+}
 .btn--small {
-	min-height: 40px;
-	padding: 0.45rem 1rem;
-	font-size: 0.9rem;
+	min-height: 42px;
+	padding: 0.6rem 1.1rem;
+	font-size: 0.76rem;
 }
 
-/* ---------- Open / closed pill ---------- */
+.arrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-weight: 600;
+	font-size: 0.82rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-bottom: 1px solid currentColor;
+	padding-bottom: 0.3rem;
+}
+.arrow::after {
+	content: "→";
+	letter-spacing: 0;
+	transition: transform 0.25s var(--ease);
+}
+.arrow:hover::after {
+	transform: translateX(4px);
+}
+
+/* ---------- Open / closed ---------- */
 
 .status {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	font-size: 0.88rem;
-	font-weight: 500;
+	gap: 0.6rem;
+	font-size: 0.95rem;
 }
 .status::before {
 	content: "";
 	flex: none;
-	width: 0.6rem;
-	height: 0.6rem;
+	width: 7px;
+	height: 7px;
 	border-radius: 50%;
-	background: #9aa0a6;
+	background: currentColor;
+	opacity: 0.4;
 }
 .status.is-open::before {
-	background: #2fa36b;
-	box-shadow: 0 0 0 4px rgb(47 163 107 / 0.2);
+	background: #5f9b6e;
+	opacity: 1;
 }
 .status.is-closed::before {
-	background: #c4392f;
+	background: #b3554a;
+	opacity: 1;
 }
 
-/* ---------- Hours tables ---------- */
+/* ---------- Hours ---------- */
 
 .hours {
 	width: 100%;
@@ -212,7 +253,7 @@ p {
 }
 .hours th,
 .hours td {
-	padding: 0.42rem 0;
+	padding: 0.6rem 0;
 	border-bottom: 1px solid var(--rule);
 	text-align: left;
 	font-weight: 400;
@@ -222,418 +263,299 @@ p {
 }
 .hours tr.is-today th,
 .hours tr.is-today td {
-	font-weight: 700;
-}
-.hours tr.is-today th::after {
-	content: " · today";
-	font-weight: 500;
-	opacity: 0.7;
+	color: var(--accent);
+	font-weight: 600;
 }
 
-/* ---------- Menu tabs ---------- */
+/* ---------- Tabs ---------- */
 
 .tabs {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
-	margin: 0 0 2rem;
-	padding: 0;
+	gap: 0 2.2rem;
+	margin: 0 0 2.5rem;
+	border-bottom: 1px solid var(--rule);
 }
 .tabs [role="tab"] {
-	min-height: 44px;
-	padding: 0.55rem 1.1rem;
-	border: 2px solid var(--tab, var(--ink));
-	border-radius: var(--btn-radius, 999px);
-	background: transparent;
-	color: var(--tab, var(--ink));
-	font: 600 0.95rem/1 var(--text);
+	min-height: 48px;
+	margin-bottom: -1px;
+	padding: 0.6rem 0;
+	border: 0;
+	border-bottom: 1px solid transparent;
+	background: none;
+	color: inherit;
+	font: 600 0.82rem/1 var(--text);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 0.6;
 	cursor: pointer;
+	transition: opacity 0.2s var(--ease);
+}
+.tabs [role="tab"]:hover {
+	opacity: 1;
 }
 .tabs [role="tab"][aria-selected="true"] {
-	background: var(--tab, var(--ink));
-	color: var(--tab-fg, var(--paper));
+	border-bottom-color: currentColor;
+	opacity: 1;
 }
 
-/* ---------- The family day: 7 am at Tati to midnight at Barbès ---------- */
+/* ---------- Today, at both houses ---------- */
 
-.horloge {
-	--start: 6; /* the bar runs 6 am to 1 am */
-	--span: 19;
+.aujourdhui {
 	display: grid;
-	gap: 0.65rem;
+	grid-template-columns: 1fr 1fr;
+	border-top: 1px solid var(--rule);
+	border-bottom: 1px solid var(--rule);
 }
-.horloge__row {
+.aujourdhui > div {
 	display: grid;
-	grid-template-columns: 6.5rem 1fr;
-	align-items: center;
-	gap: 0.85rem;
+	gap: 0.4rem;
+	padding: 1.6rem 0;
 }
-.horloge__name {
-	font-weight: 600;
-	font-size: 0.95rem;
+.aujourdhui > div + div {
+	padding-left: 2rem;
+	border-left: 1px solid var(--rule);
 }
-.horloge__track {
-	position: relative;
-	height: 2.1rem;
-	border-radius: 999px;
-	background: var(--track, rgb(127 127 127 / 0.14));
-}
-.horloge__bar {
-	font-size: 0.85rem;
-	position: absolute;
-	inset-block: 0;
-	left: calc((var(--from) - var(--start)) / var(--span) * 100%);
-	width: calc((var(--to) - var(--from)) / var(--span) * 100%);
-	display: flex;
-	align-items: center;
-	padding-inline: 0.8rem;
-	border-radius: 999px;
-	font-size: 0.8rem;
-	font-weight: 600;
-	white-space: nowrap;
-	overflow: hidden;
-}
-.horloge__bar--tati {
-	background: var(--tati-blush);
-	color: var(--tati-vert);
-	font-weight: 700;
-}
-.horloge__bar--barbes {
-	background: var(--barbes-nuit);
-	color: var(--barbes-ocre);
-	box-shadow: inset 0 0 0 1.5px var(--barbes-ocre);
-}
-.horloge__scale {
-	position: relative;
-	margin-left: calc(6.5rem + 0.85rem);
-	height: 1.2rem;
-	font-size: 0.72rem;
-	opacity: 0.7;
-	font-variant-numeric: tabular-nums;
-}
-.horloge__scale span {
-	position: absolute;
-	transform: translateX(-50%);
-	left: calc((var(--h) - 6) / 19 * 100%);
-}
-.horloge__now {
-	position: absolute;
-	top: -0.35rem;
-	bottom: -0.35rem;
-	left: calc((var(--now, 12) - var(--start)) / var(--span) * 100%);
-	width: 2px;
-	background: currentColor;
-	pointer-events: none;
-}
-.horloge__now::after {
-	content: "now";
-	position: absolute;
-	top: -1.15rem;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 0.68rem;
-	font-weight: 700;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-}
-.horloge__row + .horloge__row .horloge__now::after {
-	content: none;
-}
-.horloge__now[hidden] {
-	display: none;
-}
-
-/* ---------- Le Carnet: the shared stamp card (proposed) ---------- */
-
-.carnet {
-	position: relative;
-	display: grid;
-	grid-template-columns: 1fr auto;
-	max-width: 40rem;
-	border-radius: 12px;
-	background: #fffdf8;
-	color: #1b1d2e;
-	box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.45);
-	overflow: hidden;
-}
-.carnet__main {
-	padding: 1.4rem 1.5rem;
-}
-.carnet__stub {
-	display: grid;
-	place-items: center;
-	padding: 1rem;
-	border-left: 2px dashed rgb(27 29 46 / 0.3);
-	writing-mode: vertical-rl;
-	font-weight: 600;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-	font-size: 0.78rem;
-}
-.carnet h4 {
-	margin: 0.6rem 0 0.4rem;
-	font-family: var(--serif);
+.aujourdhui h3 {
 	font-size: 1.9rem;
-	font-weight: 400;
 }
-.carnet p {
-	font-size: 0.97rem;
+.aujourdhui p {
+	font-size: 0.95rem;
+	color: var(--muted);
 }
-.carnet__stamps {
-	display: flex;
-	gap: 0.5rem;
-	margin-top: 1rem;
-}
-.carnet__stamps span {
-	display: grid;
-	place-items: center;
-	width: 2.4rem;
-	height: 2.4rem;
-	border: 2px dashed rgb(27 29 46 / 0.35);
-	border-radius: 50%;
-	font-size: 0.62rem;
-	font-weight: 700;
-	text-transform: uppercase;
-}
-.carnet__stamps .is-tati {
-	border: 0;
-	background: var(--tati-blush);
-	color: var(--tati-vert);
-}
-.carnet__stamps .is-barbes {
-	border: 0;
-	background: var(--barbes-nuit);
-	color: var(--barbes-ocre);
-}
-.chip {
-	display: inline-block;
-	padding: 0.2rem 0.6rem;
-	border-radius: 999px;
-	background: rgb(27 29 46 / 0.08);
-	font-size: 0.72rem;
-	font-weight: 600;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
+@media (max-width: 560px) {
+	.aujourdhui {
+		grid-template-columns: 1fr;
+	}
+	.aujourdhui > div + div {
+		padding-left: 0;
+		border-left: 0;
+		border-top: 1px solid var(--rule);
+	}
 }
 
-/* ---------- Family event planner ---------- */
+/* ---------- Event planner ---------- */
 
 .planner {
 	display: grid;
-	gap: 1rem;
+	gap: 1.6rem;
 }
 .planner__row {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+	gap: 1.6rem 2rem;
 }
 .field {
 	display: grid;
-	gap: 0.35rem;
+	gap: 0.3rem;
 }
-.field label,
-.field legend {
-	font-size: 0.85rem;
+.field label {
+	font-size: 0.78rem;
 	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
 }
 .field input,
 .field select,
 .field textarea {
 	width: 100%;
-	min-height: 48px;
-	padding: 0.7rem 0.85rem;
-	border: 1.5px solid var(--field-border, var(--rule));
-	border-radius: 10px;
-	background: var(--field-bg, #fff);
+	min-height: 46px;
+	padding: 0.55rem 0;
+	border: 0;
+	border-bottom: 1px solid var(--field-line, var(--rule));
+	border-radius: 0;
+	background: transparent;
 	color: inherit;
 	font: inherit;
+	transition: border-color 0.2s var(--ease);
+}
+.field select {
+	appearance: none;
+	background: linear-gradient(45deg, transparent 50%, currentColor 50%) right 6px center / 5px 5px no-repeat,
+		linear-gradient(-45deg, transparent 50%, currentColor 50%) right 1px center / 5px 5px no-repeat;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+	outline: none;
+	border-bottom-color: currentColor;
 }
 .field textarea {
-	min-height: 6rem;
+	min-height: 5.5rem;
 	resize: vertical;
 }
 .field [aria-invalid="true"] {
-	border-color: #c4392f;
+	border-bottom-color: #b3554a;
 }
 .planner__suggest {
-	padding: 1rem 1.1rem;
-	border-radius: 12px;
-	background: var(--suggest-bg, rgb(127 127 127 / 0.1));
-	font-size: 0.95rem;
+	padding-left: 1.2rem;
+	border-left: 1px solid var(--accent);
+	font-size: 0.98rem;
 }
 .planner__suggest b {
 	display: block;
-	margin-bottom: 0.15rem;
+	font-family: var(--serif);
+	font-size: 1.45rem;
+	font-weight: 400;
 }
 .planner__houses {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.6rem;
+	gap: 0;
 	margin: 0;
 	padding: 0;
-	border: 0;
+	border: 1px solid var(--rule);
+	width: fit-content;
 }
 .planner__houses label {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	min-height: 44px;
-	padding: 0.5rem 0.95rem;
-	border: 1.5px solid var(--field-border, var(--rule));
-	border-radius: 999px;
+	min-height: 46px;
+	padding: 0.5rem 1.3rem;
+	font-size: 0.82rem;
 	font-weight: 600;
-	font-size: 0.92rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
 	cursor: pointer;
 }
+.planner__houses label + label {
+	border-left: 1px solid var(--rule);
+}
 .planner__houses input {
-	accent-color: var(--accent);
+	position: absolute;
+	opacity: 0;
+}
+.planner__houses label:has(input:checked) {
+	background: var(--ink);
+	color: var(--paper);
+}
+.planner__houses label:has(input:focus-visible) {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
 }
 .planner__msg {
 	min-height: 1.5em;
-	font-size: 0.92rem;
+	font-size: 0.95rem;
 }
 
 /* ---------- La famille: the shared footer ---------- */
 
 .famille {
-	padding-block: clamp(3rem, 6vw, 5rem) 2rem;
-	background: #15110e;
-	color: #f5f1e8;
+	padding-block: clamp(4rem, 8vw, 6.5rem) 2rem;
+	background: #120f0d;
+	color: #ece4d8;
+	--rule: rgb(236 228 216 / 0.16);
+	--muted: rgb(236 228 216 / 0.62);
 }
 .famille__head {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	align-items: end;
-	gap: 1rem 2rem;
-	margin-bottom: 2.5rem;
+	gap: 1.5rem 3rem;
+	margin-bottom: 3.5rem;
 }
 .famille__title {
-	font-family: var(--serif);
-	font-weight: 400;
-	font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem);
-}
-.famille__title b {
-	font-weight: 400;
-	color: var(--barbes-ocre);
+	font-size: clamp(2.6rem, 1.8rem + 2.6vw, 4rem);
 }
 .famille__sub {
-	max-width: 34rem;
-	opacity: 0.8;
+	max-width: 30rem;
+	color: var(--muted);
 }
-.ligne {
-	position: relative;
+.maisons {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
 	margin: 0;
-	padding: 2.4rem 0 0;
+	padding: 0;
 	list-style: none;
+	border-top: 1px solid var(--rule);
 }
-.ligne::before {
-	content: "";
-	position: absolute;
-	top: 0.95rem;
-	left: 0.6rem;
-	right: 0.6rem;
-	height: 6px;
-	border-radius: 3px;
-	background: linear-gradient(90deg, var(--tati-blush) 0 22%, #b89a86 40% 60%, var(--barbes-ocre) 78% 100%);
+.maisons li {
+	display: grid;
+	align-content: start;
+	gap: 0.35rem;
+	padding: 1.6rem 1.5rem 0 0;
 }
-.ligne li {
-	position: relative;
+.maisons li + li {
+	padding-left: 1.5rem;
+	border-left: 1px solid var(--rule);
 }
-.ligne li::before {
-	content: "";
-	position: absolute;
-	top: -1.95rem;
-	left: 0;
-	width: 1.5rem;
-	height: 1.5rem;
-	border: 4px solid #15110e;
-	border-radius: 50%;
-	background: #f5f1e8;
-	box-shadow: 0 0 0 3px #f5f1e8;
+.maisons .label {
+	color: var(--muted);
 }
-.ligne .is-sister::before {
-	width: 1.1rem;
-	height: 1.1rem;
-	top: -1.75rem;
-	left: 0.2rem;
-}
-.ligne .is-here::before {
-	background: var(--here, var(--barbes-ocre));
-	box-shadow:
-		0 0 0 3px var(--here, var(--barbes-ocre)),
-		0 0 0 9px rgb(255 255 255 / 0.12);
-}
-.ligne__name {
-	display: block;
-	font-weight: 700;
-	font-size: 1.05rem;
+.maisons__name {
+	font-family: var(--serif);
+	font-size: 1.9rem;
+	line-height: 1.1;
 	text-decoration: none;
 }
-.ligne a.ligne__name:hover {
-	text-decoration: underline;
-	text-underline-offset: 3px;
+a.maisons__name:hover {
+	color: var(--barbes-ocre);
 }
-.ligne__meta {
-	display: block;
-	font-size: 0.9rem;
-	opacity: 0.78;
+.maisons__meta {
+	font-size: 0.95rem;
+	color: var(--muted);
 }
-.ligne__here {
-	display: inline-block;
-	margin-top: 0.35rem;
-	font-size: 0.7rem;
-	font-weight: 700;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--here, var(--barbes-ocre));
+.maisons .is-here .label {
+	color: var(--barbes-ocre);
 }
 .famille__legal {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: 0.75rem 2rem;
-	margin-top: 3rem;
+	margin-top: 4.5rem;
 	padding-top: 1.5rem;
-	border-top: 1px solid rgb(245 241 232 / 0.15);
-	font-size: 0.82rem;
-	opacity: 0.7;
+	border-top: 1px solid var(--rule);
+	font-size: 0.88rem;
+	color: var(--muted);
 }
 .famille__legal a {
 	text-underline-offset: 3px;
 }
 
-@media (max-width: 760px) {
-	.ligne {
+@media (max-width: 900px) {
+	.famille__head {
 		grid-template-columns: 1fr;
-		gap: 1.4rem;
-		padding: 0 0 0 2.6rem;
 	}
-	.ligne::before {
-		top: 0.4rem;
-		bottom: 0.4rem;
-		left: 0.55rem;
-		right: auto;
-		width: 6px;
-		height: auto;
-		background: linear-gradient(180deg, var(--tati-blush) 0 22%, #b89a86 40% 60%, var(--barbes-ocre) 78% 100%);
+	.maisons {
+		grid-template-columns: 1fr 1fr;
 	}
-	.ligne li::before {
-		top: 0.1rem;
-		left: -2.6rem;
+	.maisons li:nth-child(3) {
+		padding-left: 0;
+		border-left: 0;
 	}
-	.ligne .is-sister::before {
-		top: 0.3rem;
-		left: -2.4rem;
+	.maisons li:nth-child(n + 3) {
+		margin-top: 1.6rem;
+		border-top: 1px solid var(--rule);
 	}
-	.horloge__row {
+}
+@media (max-width: 520px) {
+	.maisons {
 		grid-template-columns: 1fr;
-		gap: 0.3rem;
 	}
-	.horloge__scale {
-		margin-left: 0;
+	.maisons li,
+	.maisons li + li {
+		padding: 1.4rem 0;
+		border-left: 0;
+		border-top: 1px solid var(--rule);
+		margin: 0;
 	}
+	.maisons li:first-child {
+		border-top: 0;
+	}
+}
+
+/* Images fade in as they arrive (only when scripts run, so nothing stays hidden without them). */
+.js .reveal {
+	opacity: 0;
+	transform: translateY(18px);
+	transition:
+		opacity 0.9s var(--ease),
+		transform 0.9s var(--ease);
+}
+.js .reveal.is-in {
+	opacity: 1;
+	transform: none;
 }

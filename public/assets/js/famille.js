@@ -95,20 +95,6 @@ function render() {
 	document.querySelectorAll("[data-today-name]").forEach((el) => {
 		el.textContent = DAYS[now.day];
 	});
-	// The family day clock shows today's real hours and a "now" marker.
-	document.querySelectorAll(".horloge").forEach((clock) => {
-		clock.querySelectorAll("[data-bar]").forEach((bar) => {
-			const [opens, closes] = HOUSES[bar.dataset.bar].hours[now.day];
-			bar.style.setProperty("--from", opens / 60);
-			bar.style.setProperty("--to", Math.min(closes, H(25)) / 60);
-			bar.querySelector("[data-bar-label]").textContent = `${formatTime(opens)} – ${formatTime(closes)}`;
-		});
-		const hour = now.minute / 60 < 1 ? now.minute / 60 + 24 : now.minute / 60;
-		clock.querySelectorAll(".horloge__now").forEach((marker) => {
-			marker.hidden = hour < 6 || hour > 25;
-			marker.style.setProperty("--now", hour);
-		});
-	});
 }
 
 function setupTabs() {
@@ -159,7 +145,7 @@ function setupPlanner() {
 			? "<b>Café Tati suits this one.</b> Daytime parties, showers and kids’ birthdays on the corner of 4th & Bloomfield, BYOB, with crêpes and pastries for the table."
 			: "<b>Barbès suits this one.</b> Evening parties and bigger groups, with the bar, tagines for the table and live music on Fridays and Saturdays.";
 	};
-	[f.when, f.guests].forEach((field) => field.addEventListener("input", suggest));
+	[f.when, f.guests].forEach((field) => ["input", "change"].forEach((type) => field.addEventListener(type, suggest)));
 	form.querySelectorAll('[name="house"]').forEach((radio) => radio.addEventListener("change", () => (form.dataset.touched = "1")));
 	suggest();
 
@@ -217,28 +203,52 @@ function setupNav() {
 }
 
 // Café Tati's name: TITA, the founder's mother's nickname, with two letters swapped.
+// The I and the A trade places; offsets are measured because serif letters differ in width.
 function setupSwap() {
 	const swap = document.querySelector("[data-swap]");
 	if (!swap) return;
+	const [, i, t, a] = swap.querySelectorAll(".tita__word span");
 	const button = swap.querySelector("button");
 	const label = swap.querySelector("[data-swap-label]");
 	const set = (swapped) => {
+		const move = {
+			i: a.offsetLeft + a.offsetWidth - (i.offsetLeft + i.offsetWidth),
+			t: a.offsetWidth - i.offsetWidth,
+			a: i.offsetLeft - a.offsetLeft,
+		};
+		[[i, move.i], [t, move.t], [a, move.a]].forEach(([el, x]) => (el.style.transform = swapped ? `translateX(${x}px)` : ""));
 		swap.classList.toggle("is-swapped", swapped);
+		// The two letters arc past each other instead of colliding: up and down for the first half, back for the second.
+		swap.classList.add("is-moving");
+		setTimeout(() => swap.classList.remove("is-moving"), 550);
 		button.setAttribute("aria-pressed", String(swapped));
-		label.textContent = swapped ? "TATI" : "TITA";
+		label.textContent = swapped ? "Tati" : "Tita";
 	};
 	button.addEventListener("click", () => set(!swap.classList.contains("is-swapped")));
 	const io = new IntersectionObserver(([entry]) => {
 		if (!entry.isIntersecting) return;
-		setTimeout(() => set(true), 500);
+		setTimeout(() => set(true), 600);
 		io.disconnect();
 	}, { threshold: 0.6 });
 	io.observe(swap);
 }
 
+function setupReveal() {
+	const items = document.querySelectorAll(".reveal");
+	const io = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (!entry.isIntersecting) return;
+			entry.target.classList.add("is-in");
+			io.unobserve(entry.target);
+		});
+	}, { rootMargin: "0px 0px -8% 0px" });
+	items.forEach((el) => io.observe(el));
+}
+
 render();
 setInterval(render, 60_000);
 setupSwap();
+setupReveal();
 setupTabs();
 setupPlanner();
 setupMasthead();

@@ -1,35 +1,19 @@
 /* Café Tati: a polished Paris café for coffee, a bite and good conversation.
-   Ivory and bistro green, blush and champagne gold, with soft gingham as a quiet nod to its Paris namesake. */
+   Ivory and sand, bistro green, a dusty rose and a little gold. Quiet, light and unhurried. */
 
 .tati {
-	--paper: #faf6ef;
-	--ink: #1d1d1b;
-	--vert: #2e4636;
-	--blush: #ecd8d0;
-	--blush-pale: #f6ece6;
+	--paper: #f7f3ec;
+	--ink: #1d1c1a;
+	--muted: #6a645c;
+	--vert: #2c3f33;
+	--rose: #8e4f51;
+	--sable: #ebe4d8;
 	--or: #a8874f;
-	--rose: #9a4f57;
-	--rule: rgb(29 29 27 / 0.12);
+	--rule: rgb(29 28 26 / 0.14);
 	--accent: var(--vert);
 	--focus: var(--vert);
-	--display: var(--serif);
 	--btn-bg: var(--vert);
-	--btn-fg: #fff;
-	--tab: var(--vert);
-	--tab-fg: #fff;
-}
-
-/* ---------- Awning: green-and-ivory stripes with a scalloped hem ---------- */
-
-.t-awning {
-	height: 34px;
-	background: repeating-linear-gradient(90deg, var(--vert) 0 24px, var(--paper) 24px 48px);
-	-webkit-mask:
-		linear-gradient(#000 0 0) top / 100% calc(100% - 12px) no-repeat,
-		radial-gradient(circle at 50% 0, #000 11.5px, transparent 12px) bottom left / 24px 12px repeat-x;
-	mask:
-		linear-gradient(#000 0 0) top / 100% calc(100% - 12px) no-repeat,
-		radial-gradient(circle at 50% 0, #000 11.5px, transparent 12px) bottom left / 24px 12px repeat-x;
+	--btn-fg: #f7f3ec;
 }
 
 /* ---------- Masthead ---------- */
@@ -39,63 +23,63 @@
 	top: 0;
 	z-index: 20;
 	background: var(--paper);
-	transition: box-shadow 0.2s ease;
+	border-bottom: 1px solid var(--rule);
+	transition: box-shadow 0.3s var(--ease);
 }
 .t-mast.is-scrolled {
-	box-shadow: 0 12px 30px -18px rgb(29 29 27 / 0.3);
+	box-shadow: 0 14px 30px -24px rgb(29 28 26 / 0.45);
 }
 .t-mast__inner {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
-	min-height: 72px;
+	gap: 2.5rem;
+	min-height: 78px;
 }
 .wordmark {
-	display: grid;
+	display: flex;
+	align-items: baseline;
+	gap: 0.9rem;
 	text-decoration: none;
 }
 .wordmark__name {
 	font-family: var(--serif);
-	font-size: 2rem;
+	font-size: 2.1rem;
 	line-height: 1;
 }
-.wordmark__place {
-	margin-top: 0.2rem;
-	font-size: 0.72rem;
-	font-weight: 600;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-	color: var(--vert);
+.wordmark .label {
+	color: var(--muted);
 }
 .t-mast__nav {
 	display: flex;
-	gap: 1.5rem;
+	gap: 2rem;
 	margin-left: auto;
 }
 .t-mast__nav a {
-	font-weight: 500;
-	font-size: 0.98rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
 	text-decoration: none;
+	opacity: 0.78;
+	transition: opacity 0.2s var(--ease);
 }
 .t-mast__nav a:hover {
-	color: var(--vert);
-	text-decoration: underline;
-	text-decoration-color: var(--or);
-	text-underline-offset: 6px;
+	opacity: 1;
 }
 .t-mast__menu {
 	display: none;
 	margin-left: auto;
 	min-height: 44px;
-	padding: 0.5rem 1rem;
-	border: 1.5px solid var(--vert);
-	border-radius: 999px;
+	padding: 0.5rem 0;
+	border: 0;
 	background: none;
-	color: var(--vert);
-	font: 600 0.95rem var(--text);
+	color: inherit;
+	font: 600 0.8rem var(--text);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
 	cursor: pointer;
 }
-@media (max-width: 920px) {
+@media (max-width: 940px) {
 	.t-mast__menu {
 		display: inline-flex;
 		align-items: center;
@@ -108,16 +92,16 @@
 		display: none;
 		flex-direction: column;
 		gap: 0;
-		padding: 1rem var(--gutter) 1.5rem;
+		padding: 1rem var(--gutter) 2rem;
 		background: var(--paper);
-		box-shadow: 0 20px 30px -20px rgb(29 29 27 / 0.35);
+		border-bottom: 1px solid var(--rule);
 	}
 	.t-mast__nav.is-open {
 		display: flex;
 	}
 	.t-mast__nav a {
-		padding: 0.85rem 0;
-		font-size: 1.1rem;
+		padding: 1rem 0;
+		font-size: 0.9rem;
 		border-bottom: 1px solid var(--rule);
 	}
 	.t-mast .btn {
@@ -128,620 +112,580 @@
 /* ---------- Hero ---------- */
 
 .t-hero {
-	padding-block: clamp(2.5rem, 6vw, 5rem) clamp(4rem, 8vw, 6.5rem);
-}
-.t-hero__grid {
 	display: grid;
-	grid-template-columns: 1.1fr 0.9fr;
-	align-items: center;
-	gap: clamp(2rem, 6vw, 5rem);
+	grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	min-height: min(calc(100svh - 78px), 56rem);
 }
-.t-hero .eyebrow {
+.t-hero__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: clamp(3rem, 7vw, 6rem) clamp(2rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem) max(var(--gutter), (100vw - var(--wrap)) / 2);
+}
+.t-hero .label {
 	color: var(--rose);
 }
 .t-hero h1 {
-	margin-top: 1.1rem;
-	font-size: clamp(3rem, 1.6rem + 4.8vw, 5.8rem);
-	line-height: 1;
-}
-.t-hero h1 em {
-	color: var(--vert);
+	margin-top: 1.6rem;
+	font-size: clamp(3.2rem, 1.6rem + 4.8vw, 6.4rem);
+	line-height: 0.98;
 }
 .t-hero__lede {
-	max-width: 33rem;
-	margin-top: 1.6rem;
-	font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
+	max-width: 31rem;
+	margin-top: 1.8rem;
+	font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem);
+	color: var(--muted);
 }
 .t-hero__ctas {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.8rem;
-	margin-top: 2rem;
+	align-items: center;
+	gap: 1.2rem 2rem;
+	margin-top: 2.6rem;
 }
-.t-hero__now {
+.t-hero__meta {
 	display: grid;
-	gap: 0.45rem;
-	max-width: 33rem;
-	margin-top: 2rem;
-	padding: 1rem 1.15rem;
-	border-radius: 14px;
-	background: var(--blush-pale);
-	font-size: 0.97rem;
+	gap: 0.5rem;
+	max-width: 31rem;
+	margin-top: auto;
+	padding-top: 3rem;
+	font-size: 0.95rem;
 }
-.t-hero__now a {
-	color: var(--vert);
-	font-weight: 700;
+.t-hero__meta p {
+	color: var(--muted);
+}
+.t-hero__meta a {
+	color: var(--ink);
 	text-underline-offset: 3px;
 }
-
-/* An arched Paris shop window with a fine gold line around it. */
-.vitrine {
+.t-hero__media {
 	position: relative;
-	margin-inline: 12px;
+	overflow: hidden;
+	background: var(--sable);
 }
-.vitrine img {
-	width: 100%;
-	aspect-ratio: 4 / 4.8;
-	object-fit: cover;
-	border-radius: 999px 999px 18px 18px;
-	outline: 1px solid var(--or);
-	outline-offset: 10px;
-	box-shadow: 0 30px 60px -30px rgb(29 29 27 / 0.45);
-}
-.etiquette {
+.t-hero__media img {
 	position: absolute;
-	left: -0.4rem;
-	bottom: 1.6rem;
-	padding: 0.5rem 1rem;
-	border: 1px solid var(--or);
-	border-radius: 999px;
-	background: var(--paper);
-	color: var(--vert);
-	font-weight: 600;
-	font-size: 0.88rem;
-	letter-spacing: 0.04em;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
-@media (max-width: 860px) {
-	.t-hero__grid {
+@media (max-width: 900px) {
+	.t-hero {
 		grid-template-columns: 1fr;
+		min-height: 0;
 	}
-	.vitrine {
-		width: min(100% - 24px, 24rem);
-		margin: 1.5rem auto 0;
+	.t-hero__media {
+		order: -1;
+		aspect-ratio: 4 / 3.6;
+	}
+	.t-hero__text {
+		padding: 2.5rem var(--gutter) 3.5rem;
+	}
+	.t-hero__meta {
+		margin-top: 0;
 	}
 }
 
 /* ---------- Sections ---------- */
 
 .t-section {
-	padding-block: clamp(4rem, 9vw, 7rem);
+	padding-block: clamp(5rem, 10vw, 9rem);
 }
-.t-head {
-	max-width: 44rem;
-	margin-bottom: clamp(2rem, 5vw, 3.2rem);
+.head {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	gap: 1.5rem 3rem;
+	align-items: end;
+	margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
-.t-head .eyebrow {
-	color: var(--rose);
+.head h2 {
+	margin-top: 1.4rem;
+	font-size: clamp(2.6rem, 1.6rem + 3.2vw, 4.6rem);
 }
-.t-head h2 {
-	margin-top: 0.7rem;
-	font-size: clamp(2.4rem, 1.5rem + 3.2vw, 4.1rem);
-}
-.t-head h2 em {
-	color: var(--vert);
-}
-.t-head p {
-	margin-top: 1rem;
+.head > p {
+	max-width: 34rem;
 	font-size: 1.12rem;
+	color: var(--muted);
+}
+@media (max-width: 860px) {
+	.head {
+		grid-template-columns: 1fr;
+	}
 }
 
-/* ---------- Toute la journée ---------- */
+/* ---------- The café ---------- */
+
+.cafe__statement {
+	max-width: 58rem;
+	margin-top: 1.6rem;
+	font-family: var(--serif);
+	font-size: clamp(2rem, 1.3rem + 2.2vw, 3.2rem);
+	line-height: 1.15;
+}
+.cafe__statement em {
+	font-style: normal;
+	color: var(--rose);
+}
+.faits {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 3.5rem 0 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--rule);
+}
+.faits li {
+	padding: 1.4rem 1.5rem 0 0;
+	color: var(--muted);
+}
+.faits li + li {
+	padding-left: 1.5rem;
+	border-left: 1px solid var(--rule);
+}
+.faits b {
+	display: block;
+	margin-bottom: 0.3rem;
+	font-family: var(--serif);
+	font-size: 1.7rem;
+	font-weight: 400;
+	color: var(--ink);
+}
+@media (max-width: 760px) {
+	.faits {
+		grid-template-columns: 1fr;
+	}
+	.faits li,
+	.faits li + li {
+		padding: 1.2rem 0;
+		border-left: 0;
+		border-bottom: 1px solid var(--rule);
+	}
+}
+
+/* ---------- All day ---------- */
 
 .journee {
 	background: #fff;
-	border-block: 1px solid var(--rule);
 }
 .journee__grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: clamp(1rem, 3vw, 2rem);
+	gap: clamp(1.25rem, 3vw, 2.5rem);
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
-.moment {
-	display: flex;
-	flex-direction: column;
-}
-.moment__photo {
-	position: relative;
-	border-radius: 16px;
-	overflow: hidden;
-	background: var(--blush-pale);
-}
-.moment__photo img {
+.moment img {
 	width: 100%;
-	aspect-ratio: 4 / 3;
+	aspect-ratio: 4 / 5;
 	object-fit: cover;
 }
-.moment__time {
-	position: absolute;
-	left: 0.8rem;
-	top: 0.8rem;
-	padding: 0.3rem 0.8rem;
-	border-radius: 999px;
-	background: var(--paper);
-	color: var(--vert);
-	font-weight: 600;
-	font-size: 0.88rem;
-}
-.moment h3 {
-	margin-top: 1.1rem;
-	font-size: 2rem;
-}
-.moment h3 em {
+.moment .label {
+	display: block;
+	margin-top: 1.4rem;
 	color: var(--rose);
 }
-.moment p {
+.moment h3 {
 	margin-top: 0.5rem;
+	font-size: 2.2rem;
 }
-.moment__more {
-	margin-top: 0.8rem;
-	font-weight: 600;
-	color: var(--vert);
-	text-underline-offset: 3px;
+.moment p {
+	margin-top: 0.6rem;
+	color: var(--muted);
+}
+.moment .arrow {
+	display: inline-flex;
+	margin-top: 1.2rem;
 }
 @media (max-width: 860px) {
 	.journee__grid {
 		grid-template-columns: 1fr;
 	}
+	.moment img {
+		aspect-ratio: 4 / 3;
+	}
 }
 
-/* ---------- Pourquoi Tati? ---------- */
+/* ---------- The name ---------- */
 
-.pourquoi {
-	--vichy-size: 32px;
+.nom {
+	background: var(--sable);
 }
-.pourquoi__card {
+.nom__grid {
 	display: grid;
-	grid-template-columns: 0.9fr 1.1fr;
-	gap: clamp(2rem, 5vw, 4rem);
-	padding: clamp(1.75rem, 5vw, 4rem);
-	border-radius: 24px;
-	background: var(--paper);
-	box-shadow: 0 30px 60px -36px rgb(29 29 27 / 0.35);
+	grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+	gap: clamp(2.5rem, 7vw, 7rem);
+	align-items: start;
 }
-.swap {
-	display: grid;
-	gap: 1rem;
-	align-content: start;
+.tita {
+	position: sticky;
+	top: 8rem;
 }
-.swap .eyebrow {
+.tita__word {
+	display: flex;
+	margin-top: 2rem;
+	font-family: var(--serif);
+	font-size: clamp(7rem, 4rem + 11vw, 15rem);
+	line-height: 0.85;
+	letter-spacing: 0.02em;
+}
+.tita__word span {
+	display: inline-block;
+	transition:
+		transform 1.1s var(--ease),
+		translate 0.55s ease-in-out,
+		color 1.1s var(--ease);
+}
+.tita.is-moving .tita__word span:nth-child(2) {
+	translate: 0 -0.12em;
+}
+.tita.is-moving .tita__word span:nth-child(4) {
+	translate: 0 0.12em;
+}
+.tita.is-swapped .tita__word span:nth-child(2),
+.tita.is-swapped .tita__word span:nth-child(4) {
 	color: var(--rose);
 }
-.swap__tiles {
-	--tile: clamp(3.4rem, 2.4rem + 3.6vw, 5.2rem);
-	position: relative;
-	display: flex;
-	gap: 0.6rem;
-	height: calc(var(--tile) * 1.25);
+.tita__caption {
+	margin-top: 1.6rem;
+	color: var(--muted);
 }
-.swap__tiles span {
-	display: grid;
-	place-items: center;
-	width: var(--tile);
-	height: calc(var(--tile) * 1.25);
-	border: 1px solid var(--ink);
-	border-radius: 999px 999px 8px 8px;
-	background: #fff;
-	font-family: var(--serif);
-	font-size: calc(var(--tile) * 0.8);
-	line-height: 1;
-	transition:
-		transform 0.9s cubic-bezier(0.65, 0, 0.35, 1),
-		background-color 0.9s ease;
+.tita__caption b {
+	font-weight: 600;
+	color: var(--ink);
 }
-.swap.is-swapped .swap__tiles span:nth-child(2) {
-	transform: translateX(calc(2 * (var(--tile) + 0.6rem)));
-	background: var(--blush);
-}
-.swap.is-swapped .swap__tiles span:nth-child(4) {
-	transform: translateX(calc(-2 * (var(--tile) + 0.6rem)));
-	background: var(--blush);
-}
-.swap__caption {
-	font-size: 0.98rem;
-}
-.swap__caption b {
+.tita button {
+	margin-top: 1.4rem;
+	padding: 0 0 0.3rem;
+	border: 0;
+	border-bottom: 1px solid currentColor;
+	background: none;
 	color: var(--vert);
-}
-.swap button {
-	justify-self: start;
-	min-height: 44px;
-	padding: 0.45rem 1.1rem;
-	border: 1.5px solid var(--vert);
-	border-radius: 999px;
-	background: transparent;
-	color: var(--vert);
-	font: 600 0.92rem var(--text);
+	font: 600 0.82rem var(--text);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
 	cursor: pointer;
 }
-.pourquoi__story h3 {
-	margin: 1.8rem 0 0.4rem;
-	font-size: 1.9rem;
+.nom__story h3 {
+	margin: 2.6rem 0 0.6rem;
+	font-size: 2rem;
 }
-.pourquoi__story h3:first-of-type {
+.nom__story h3:first-child {
 	margin-top: 0;
 }
-.pourquoi__story h3 span {
+.nom__story h3 span {
 	color: var(--rose);
 }
-.pourquoi__story p + p {
-	margin-top: 0.8rem;
+.nom__story p {
+	color: var(--muted);
 }
-.pourquoi__quote {
-	margin: 2rem 0 0;
-	padding: 1.3rem 1.5rem;
-	border-left: 2px solid var(--or);
-	background: var(--blush-pale);
-	border-radius: 0 14px 14px 0;
+.nom__story p + p {
+	margin-top: 0.9rem;
+}
+.nom__quote {
+	margin: 3rem 0 0;
+	padding-top: 2rem;
+	border-top: 1px solid var(--rule);
 	font-family: var(--serif);
-	font-size: 1.6rem;
-	line-height: 1.3;
+	font-size: clamp(1.8rem, 1.3rem + 1.2vw, 2.4rem);
+	line-height: 1.2;
 }
-.pourquoi__quote footer {
-	margin-top: 0.5rem;
+.nom__quote footer {
+	margin-top: 0.8rem;
 	font-family: var(--text);
-	font-size: 0.92rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
 }
-.ours-band {
+.ours {
 	display: grid;
-	grid-template-columns: auto 1fr;
-	gap: 1rem;
+	grid-template-columns: 9rem 1fr;
+	gap: 1.4rem;
 	align-items: center;
-	margin-top: 1.6rem;
+	margin-top: 2.6rem;
 }
-.ours-band img {
-	width: 9rem;
-	height: 6.2rem;
+.ours img {
+	width: 100%;
+	aspect-ratio: 1;
 	object-fit: cover;
-	border-radius: 12px;
 }
-.ours-band p {
+.ours p {
 	font-size: 1rem;
 }
-@media (max-width: 860px) {
-	.pourquoi__card {
+@media (max-width: 900px) {
+	.nom__grid {
 		grid-template-columns: 1fr;
 	}
-}
-@media (max-width: 520px) {
-	.ours-band {
-		grid-template-columns: 1fr;
-	}
-	.ours-band img {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 361 / 250;
+	.tita {
+		position: static;
 	}
 }
 
-/* ---------- Menu: a printed café card ---------- */
+/* ---------- The menu ---------- */
 
-.t-carte__grid {
+.t-carte__cols {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	column-gap: clamp(2rem, 5vw, 4rem);
-	padding: clamp(1.5rem, 4vw, 3rem);
-	border-radius: 6px;
-	background: #fff;
-	box-shadow: inset 0 0 0 8px #fff, inset 0 0 0 9px var(--or);
-}
-.item {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	align-items: baseline;
-	gap: 0.15rem 1rem;
-	padding: 0.85rem 0;
-	border-bottom: 1px solid var(--rule);
-}
-.item__name {
-	font-weight: 600;
-	font-size: 1.05rem;
-}
-.item__desc {
-	grid-column: 1;
-	font-size: 0.95rem;
-	opacity: 0.78;
-}
-.item__price {
-	grid-row: 1;
-	grid-column: 2;
-	font-weight: 600;
-	font-variant-numeric: tabular-nums;
-}
-.item--star .item__name::after {
-	content: "House favourite";
-	margin-left: 0.6rem;
-	padding: 0.1rem 0.5rem;
-	border-radius: 999px;
-	background: var(--blush);
-	color: var(--rose);
-	font-size: 0.7rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	vertical-align: 0.15em;
+	gap: 0 clamp(2.5rem, 6vw, 6rem);
 }
 .t-carte__group {
-	grid-column: 1 / -1;
-	margin-top: 1.8rem;
-	font-family: var(--serif);
-	font-size: 1.7rem;
-	color: var(--vert);
+	margin: 2.6rem 0 0.4rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--rose);
 }
 .t-carte__group:first-child {
 	margin-top: 0;
 }
-.t-carte__note {
-	margin-top: 1.4rem;
+.item {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	column-gap: 1.5rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--rule);
+}
+.item__name {
+	font-size: 1.08rem;
+	font-weight: 500;
+}
+.item__price {
+	grid-row: 1;
+	grid-column: 2;
+	font-variant-numeric: tabular-nums;
+}
+.item__desc {
+	grid-column: 1 / -1;
+	margin-top: 0.15rem;
 	font-size: 0.95rem;
-	opacity: 0.8;
+	color: var(--muted);
 }
-.byob {
-	display: inline-block;
-	margin-left: 0.5rem;
-	padding: 0.15rem 0.6rem;
-	border-radius: 999px;
-	background: var(--vert);
-	color: #fff;
-	font-family: var(--text);
+.item__mark {
+	margin-left: 0.7rem;
 	font-size: 0.72rem;
-	font-weight: 700;
-	letter-spacing: 0.08em;
-	vertical-align: middle;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--rose);
+	white-space: nowrap;
 }
-@media (max-width: 760px) {
-	.t-carte__grid {
+.t-carte__note {
+	margin-top: 2.6rem;
+	font-size: 0.95rem;
+	color: var(--muted);
+}
+@media (max-width: 820px) {
+	.t-carte__cols {
 		grid-template-columns: 1fr;
+	}
+	.t-carte__cols > div + div {
+		margin-top: 2.6rem;
 	}
 }
 
 /* ---------- Everyone welcome ---------- */
 
-.bienvenue {
-	background: var(--blush-pale);
-}
-.bienvenue__grid {
+.bienvenue__list {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	border-top: 1px solid var(--rule);
 }
-.bienvenue__grid li {
-	padding: 1.5rem 1.4rem;
-	border-radius: 16px;
-	background: var(--paper);
-	box-shadow: inset 0 0 0 1px var(--rule);
+.bienvenue__list li {
+	padding: 1.6rem 1.5rem 0 0;
+	color: var(--muted);
 }
-.bienvenue__grid svg {
-	width: 2.3rem;
-	height: 2.3rem;
-	color: var(--vert);
+.bienvenue__list li + li {
+	padding-left: 1.5rem;
+	border-left: 1px solid var(--rule);
 }
-.bienvenue__grid h3 {
-	margin: 0.8rem 0 0.3rem;
-	font-size: 1.6rem;
+.bienvenue__list .label {
+	color: var(--rose);
 }
-.bienvenue__grid p {
-	font-size: 1rem;
+.bienvenue__list h3 {
+	margin: 0.6rem 0 0.4rem;
+	font-size: 1.9rem;
+	color: var(--ink);
 }
 @media (max-width: 960px) {
-	.bienvenue__grid {
-		grid-template-columns: repeat(2, 1fr);
+	.bienvenue__list {
+		grid-template-columns: 1fr 1fr;
+	}
+	.bienvenue__list li:nth-child(3) {
+		padding-left: 0;
+		border-left: 0;
+	}
+	.bienvenue__list li:nth-child(n + 3) {
+		margin-top: 1.6rem;
+		border-top: 1px solid var(--rule);
 	}
 }
 @media (max-width: 520px) {
-	.bienvenue__grid {
+	.bienvenue__list {
 		grid-template-columns: 1fr;
+	}
+	.bienvenue__list li,
+	.bienvenue__list li + li {
+		padding: 1.4rem 0;
+		margin: 0;
+		border-left: 0;
+		border-top: 1px solid var(--rule);
+	}
+	.bienvenue__list li:first-child {
+		border-top: 0;
 	}
 }
 
 /* ---------- Parties ---------- */
 
+.t-fetes {
+	background: #fff;
+}
 .t-fetes__grid {
 	display: grid;
-	grid-template-columns: 0.8fr 1.2fr;
-	gap: clamp(2rem, 6vw, 5rem);
+	grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	gap: clamp(2.5rem, 8vw, 8rem);
 	align-items: start;
 }
-.t-fetes__photo img {
-	width: 100%;
-	aspect-ratio: 3 / 4;
-	object-fit: cover;
-	border-radius: 18px;
+.t-fetes__aside {
+	position: sticky;
+	top: 8rem;
 }
-.t-fetes__photo figcaption {
-	margin-top: 0.6rem;
-	font-size: 0.92rem;
-	opacity: 0.75;
+.t-fetes h2 {
+	margin-top: 1.4rem;
+	font-size: clamp(2.6rem, 1.6rem + 3.2vw, 4.4rem);
 }
-.tati .planner {
-	--field-bg: #fff;
-	--suggest-bg: var(--blush-pale);
+.t-fetes__intro {
+	max-width: 36rem;
+	margin-top: 1.4rem;
+	font-size: 1.12rem;
+	color: var(--muted);
 }
-@media (max-width: 860px) {
+@media (max-width: 900px) {
 	.t-fetes__grid {
 		grid-template-columns: 1fr;
 	}
-	.t-fetes__photo {
-		max-width: 22rem;
+	.t-fetes__aside {
+		position: static;
 	}
 }
 
-/* ---------- Relay: tonight at Barbès ---------- */
+/* ---------- Our sister: Barbès ---------- */
 
-.t-relais {
+.t-soeur {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	background: var(--barbes-nuit);
+	color: #efe6d9;
+	--muted: #b5a797;
+	--rule: rgb(239 230 217 / 0.16);
+}
+.t-soeur__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1.4rem;
+	padding: clamp(3rem, 7vw, 6rem) clamp(2rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6rem) max(var(--gutter), (100vw - var(--wrap)) / 2);
+}
+.t-soeur .label {
+	color: var(--barbes-ocre);
+}
+.t-soeur h2 {
+	font-size: clamp(2.6rem, 1.6rem + 3vw, 4.4rem);
+}
+.t-soeur h2 em {
+	color: var(--barbes-ocre);
+}
+.t-soeur p {
+	max-width: 32rem;
+	color: var(--muted);
+}
+.t-soeur__live {
+	padding-left: 1.2rem;
+	border-left: 1px solid var(--barbes-ocre);
+	color: #efe6d9 !important;
+}
+.t-soeur .arrow {
+	align-self: flex-start;
+	color: var(--barbes-ocre);
+}
+.t-soeur__media {
 	position: relative;
-	padding-block: clamp(3.5rem, 7vw, 5.5rem);
-	background:
-		radial-gradient(50rem 30rem at 85% 50%, rgb(201 161 91 / 0.16), transparent 60%),
-		var(--barbes-nuit);
-	color: #f4ecdf;
+	min-height: 34rem;
 }
-.t-relais::before {
-	content: "";
+.t-soeur__media img {
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 12px;
-	background: radial-gradient(circle at 50% 0, var(--barbes-ocre) 11px, transparent 11.5px) 0 0 / 24px 12px repeat-x;
-}
-.t-relais__grid {
-	display: grid;
-	grid-template-columns: 1.1fr 0.9fr;
-	gap: clamp(2rem, 6vw, 5rem);
-	align-items: center;
-}
-.t-relais .eyebrow {
-	color: var(--barbes-ocre);
-}
-.t-relais h2 {
-	margin-top: 0.7rem;
-	font-size: clamp(2.4rem, 1.5rem + 3vw, 3.9rem);
-}
-.t-relais h2 em {
-	color: var(--barbes-ocre);
-}
-.t-relais p {
-	margin-top: 1rem;
-	color: #e9dfcf;
-}
-.t-relais__live {
-	padding: 0.9rem 1rem;
-	border-left: 3px solid var(--barbes-ocre);
-	background: rgb(255 255 255 / 0.05);
-	border-radius: 0 10px 10px 0;
-	font-weight: 500;
-}
-.t-relais .btn {
-	--btn-bg: var(--barbes-ocre);
-	--btn-fg: var(--barbes-nuit);
-	margin-top: 1.6rem;
-}
-.t-relais__photos {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0.8rem;
-}
-.t-relais__photos img {
+	inset: 0;
 	width: 100%;
-	aspect-ratio: 3 / 4;
+	height: 100%;
 	object-fit: cover;
-	border-radius: 999px 999px 12px 12px;
-}
-.t-relais__photos img:last-child {
-	margin-top: 2.5rem;
+	object-position: 50% 30%;
 }
 @media (max-width: 860px) {
-	.t-relais__grid {
+	.t-soeur {
 		grid-template-columns: 1fr;
 	}
-	.t-relais__photos {
-		max-width: 26rem;
+	.t-soeur__media {
+		order: -1;
+		min-height: 0;
+		aspect-ratio: 4 / 3;
 	}
-}
-
-/* ---------- Ensemble ---------- */
-
-.t-ensemble__grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: clamp(2rem, 6vw, 5rem);
-	align-items: center;
-}
-.t-ensemble h3 {
-	margin-bottom: 1.4rem;
-	font-size: 1.9rem;
-}
-.tati .horloge {
-	--track: rgb(46 70 54 / 0.08);
-	color: var(--ink);
-}
-@media (max-width: 900px) {
-	.t-ensemble__grid {
-		grid-template-columns: 1fr;
+	.t-soeur__text {
+		padding: 3rem var(--gutter);
 	}
 }
 
 /* ---------- Visit ---------- */
 
-.t-visite {
-	background: #fff;
-	border-top: 1px solid var(--rule);
-}
 .t-visite__grid {
 	display: grid;
-	grid-template-columns: 0.9fr 1.1fr;
-	gap: clamp(2rem, 6vw, 5rem);
-	align-items: start;
-}
-/* The copper-machine frame comes from a 640px Instagram preview; keep it near its real size. */
-.t-visite__photo {
-	max-width: 380px;
-}
-.t-visite__photo img {
-	width: 100%;
-	border-radius: 18px;
-}
-.t-visite__photo figcaption {
-	margin-top: 0.6rem;
-	font-size: 0.92rem;
-	opacity: 0.75;
+	grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+	gap: clamp(2.5rem, 7vw, 7rem);
 }
 .t-visite__address {
+	margin-top: 1.4rem;
 	font-family: var(--serif);
-	font-size: clamp(2.1rem, 1.5rem + 1.6vw, 2.9rem);
+	font-size: clamp(2.4rem, 1.6rem + 2vw, 3.4rem);
 	line-height: 1.05;
 }
 .t-visite__address span {
 	display: block;
-	margin-top: 0.5rem;
+	margin-top: 0.6rem;
 	font-family: var(--text);
 	font-size: 1.02rem;
+	color: var(--muted);
 }
 .t-visite__block {
-	margin-top: 1.8rem;
+	margin-top: 2.4rem;
 }
-.t-visite__block h3 {
+.t-visite__block .label {
+	display: block;
 	margin-bottom: 0.6rem;
-	font-family: var(--text);
-	font-size: 0.82rem;
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--rose);
+	color: var(--muted);
 }
 .t-visite__links {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.7rem;
-	margin-top: 1.8rem;
+	align-items: center;
+	gap: 1.2rem 2rem;
+	margin-top: 2.4rem;
 }
 .t-visite__note {
-	margin-top: 1.1rem;
+	margin-top: 1.4rem;
 	font-size: 0.95rem;
-	opacity: 0.8;
+	color: var(--muted);
 }
-@media (max-width: 860px) {
+.t-visite .aujourdhui {
+	margin-top: 3rem;
+}
+@media (max-width: 900px) {
 	.t-visite__grid {
 		grid-template-columns: 1fr;
 	}
-}
-
-.tati .famille {
-	--here: var(--tati-blush);
 }

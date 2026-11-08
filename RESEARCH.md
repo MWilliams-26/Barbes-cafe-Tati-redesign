@@ -32,7 +32,7 @@ Refresh concept for two sister restaurants in Hoboken, NJ, prepared November 7, 
 ## The Paris story behind the names
 
 - **Tati** was founded on March 13, 1948 by Jules Ouaki, a saddler from La Goulette, Tunisia, as a 50 m² shop on Boulevard de Rochechouart in Barbès. He wanted to call it *Tita*, his mother Esther's nickname; the name was registered, so he used the anagram *Tati*. The store later moved to 4 boulevard Barbès, the former site of the Dupont-Barbès brasserie. Its logo paired blue lettering with pink-and-white vichy (gingham), dropped in 2013. The last Tati, in Barbès, closed in 2021 ([Wikipédia: Tati (entreprise)](https://fr.wikipedia.org/wiki/Tati_(entreprise)); [Soundlandscapes](https://soundlandscapes.wordpress.com/2014/05/19/tati-les-plus-bas-prix/); [The Guardian, Jul 2020](https://www.theguardian.com/world/2020/jul/08/tati-much-loved-french-retailing-institution-shuts-up-shop-in-paris-after-70-years); [Hommes & Migrations](https://journals.openedition.org/hommesmigrations/3150?lang=en)).
-- The Tati brand belongs to Gifi. The concept uses gingham as a generic pattern and Café Tati's own name; it does not reproduce the Tati logo.
+- The Tati brand belongs to Gifi. The concept uses only Café Tati's own name; it reproduces neither the Tati logo nor its gingham.
 - The hook: in Paris, Barbès (the neighbourhood) and Tati (its landmark shop) are inseparable, and both were built by people from North Africa making a home in Paris. In Hoboken the same family runs Barbès and Café Tati.
 
 ## Re-checked on November 7, 2026
@@ -54,18 +54,21 @@ Designed from the research, before choosing any components.
 
 **Type (both houses):** one simple, modern pairing chosen for legibility: Instrument Serif for headings, always set large and never in italics, and Instrument Sans for everything else at 17–18 px with generous line height. Emphasis in headings is a colour change, not italics.
 
-**Shared by both (the family resemblance):**
-- Gingham. Barbès's own logo is a red vichy stamp, and Tati is named after the shop famous for pink vichy. On the new sites it is a soft blush gingham, used only where Tati appears.
-- The scalloped awning edge (brass at Barbès, green-and-ivory stripes at Tati) and arched windows (a horseshoe arch at Barbès, a Paris shop window at Tati).
-- The family line: a shared footer with Café Tati, La Bohème, Pronto Pasta and Barbès as stops on one line, showing whether the sister is open now.
+**Design standard:** editorial and restrained, the way a hospitality studio would build it: the client's own photography at full bleed, generous white space, one grid, hairline rules instead of boxes, square buttons, small-capital labels and numbered sections. No decorative patterns, no illustrated awnings, no badges or pills. An earlier round used gingham, scalloped awnings and a ticket-style card; it was rejected in review as looking templated, so it was removed entirely.
+
+**Shared by both (the family resemblance comes from structure, not decoration):**
+- The same type, grid, numbered sections ("01 The name"), hairline menus with "Signature" marks, underline tabs and form fields.
+- A sister band on each site: Barbès gives Tati an ivory band; Tati gives Barbès a dark band with the bar photograph.
 - Live hand-offs: a sentence on each site, computed from both houses' hours, that recommends the other (for example, at 11 am on Barbès: "Barbès opens at 4 pm. Until then, our little sister Café Tati is pouring…").
-- The family day: a clock bar with today's hours for both, 7 am at Tati to midnight at Barbès.
+- "Today at both houses": the same panel on every page shows whether each house is open now and when it opens or closes.
 - One party planner that suggests the right house (daytime and up to 30 guests → Tati; evening or larger → Barbès).
-- Le Carnet, a shared stamp card styled like a book of métro tickets (proposed, labelled as such).
+- The family footer: Café Tati, La Bohème, Pronto Pasta and Barbès, with the sister's live status.
 
-**Barbès: moody, earthy, French.** Candlelit espresso and walnut (#1c1714, #2b221c), bordeaux (#7a2e26), terracotta clay (#9a4a2a), olive and brass (#c9a15b) on linen (#ece2d3). A warm glow behind the hero instead of flat colour, a brass scalloped valance after the real awnings, a horseshoe-arch photo frame, and a menu card split into Côté Paris and Côté Marrakech. The week (Moules Monday, happy hour, live music, brunch) is set as text, with today highlighted.
+**Barbès: moody, earthy, French.** Near-black (#1a1512), warm stone paper (#efe8de, #e6ddcf), bordeaux (#6f2b24) and candlelit brass (#c4a06a). A dark split hero with the real back bar, the name story beside an arch-topped photograph of the brass BARBES letters, the week as a hairline list with today marked, a full-bleed tagine spread, and a dark menu split into Côté Paris and Côté Marrakech.
 
-**Café Tati: a polished Paris café for coffee, a bite and good conversation.** Ivory (#faf6ef), bistro green (#2e4636), blush (#ecd8d0), dusty rose and champagne gold (#a8874f). A green-and-ivory striped awning, an arched shop-window photo with a fine gold line, the menu as a printed café card with gold hairlines, the TITA → TATI letter swap, soft gingham behind the name story, and a "Le soir, chez Barbès" band that brings Barbès's candlelight into Tati's page.
+**Café Tati: a polished Paris café for coffee, a bite and good conversation.** Ivory (#f7f3ec), sand (#ebe4d8), white, bistro green (#2c3f33) and a dusty rose (#8e4f51). A light split hero, a large statement, morning / noon / evening columns, the TITA → TATI letter swap set very large in the serif (the I and A arc past each other), the menu on hairlines in four tabs, and a dark Barbès band near the end.
+
+**Cover page:** two full-height photographs side by side, Café Tati and Barbès, each with its name, one line and live status; then the shared story and "today at both houses".
 
 **Business goals, in order:** fix the dead ends (Tati's website, Barbès's menu links); make dinner and BYOB at Tati and the weekly events at Barbès findable as text; direct ordering (Toast) over the apps; party inquiries; cross-promotion; local search (structured data on each page).
 
@@ -75,12 +78,12 @@ Designed from the research, before choosing any components.
 
 | Asset | Source | License / status | Use |
 | --- | --- | --- | --- |
-| Barbès photos: bar, storefront, tagine spread, moules, tagine lid, coupe, cocktail, wine, wedding (`public/assets/img/barbes/*`) | barbesrestaurant.com `/_next/static/immutable/media/…` (file names in `scripts/images.sh`) | Client-owned; pitch use only. **Confirm** permission, photographer credit, and model releases for the wedding couple and the bartender. Storefront original is only 1284 px wide | Hero, story, menu, gallery, parties, visit, Tati's relay band, cover |
-| Barbès logo (`logo-*.webp`) | barbesrestaurant.com | Client-owned; ask for a vector original | Header, menu spine |
-| Café Tati exterior, brunch, counter, croque madame (`public/assets/img/tati/*-800.webp`) | Google listing photos as mirrored on joe.coffee (`pub-ba1a74be…r2.dev/shops/483cbb2d…/0–4.jpg`) | **Uploader not confirmed**; may be customer photos. Mood placeholders for the pitch only; replace with owner originals before anything goes live | Tati hero, day section, parties, cover, Barbès relay band |
-| Café Tati bears, tagine, copper machine (`*-360.webp`) | Frames cropped from 640 px previews of the café's own Instagram posts DXP0OhOCLv9, DW9ypc5Df_B, DXcsL4XDP5F | Client-owned; low resolution. **Confirm** permission and get originals | Story, dinner, visit |
+| Barbès photos: bar, storefront, tagine spread, moules, tagine lid, coupe, wine, wedding (`public/assets/img/barbes/*`) | barbesrestaurant.com `/_next/static/immutable/media/…` (file names in `scripts/images.sh`) | Client-owned; pitch use only. **Confirm** permission, photographer credit, and model releases for the wedding couple and the bartender. Storefront original is only 1284 px wide | Hero, story, menu, gallery, parties, visit, Tati's relay band, cover |
+| Barbès logo | barbesrestaurant.com | Client-owned; not used on the pages (a type wordmark stands in). Ask for a vector original | — |
+| Café Tati exterior, brunch, counter, croque madame (`public/assets/img/tati/*-800.webp`) | Google listing photos as mirrored on joe.coffee (`pub-ba1a74be…r2.dev/shops/483cbb2d…/0–4.jpg`) | **Uploader not confirmed**; may be customer photos. Mood placeholders for the pitch only; replace with owner originals before anything goes live | Tati hero and day section, cover, Barbès sister band |
+| Café Tati bears (`bears-360.webp`) | Frame cropped from a 640 px preview of the café's own Instagram post DXP0OhOCLv9 | Client-owned; low resolution. **Confirm** permission and get originals | Name story |
 | Social cards (`og-*.jpg`) | Built from the photos above | Same as their sources | Link previews |
-| Gingham, awnings, arches, favicons | Drawn for this project in CSS and SVG | Original | Throughout |
+| Arch photo frame, favicons | Drawn for this project in CSS and SVG | Original | Throughout |
 | Quotes from the owners and the café | 2018 Barbès About page (Wayback); Café Tati Instagram | The owners' own words; **confirm** wording | Story sections, brief |
 | Fonts: Instrument Serif, Instrument Sans | Google Fonts | SIL Open Font License | Throughout |
 
@@ -96,6 +99,6 @@ No AI-generated imagery is used. Customer photos from Yelp, Tripadvisor and pres
 6. Whether to show La Bohème and Pronto Pasta in the family footer.
 7. Party capacity, packages and the inbox for inquiries (the concept uses info@barbesrestaurant.com for both).
 8. Whether to turn on Toast online ordering at both and point Google's "Order" links to it.
-9. Whether they want Le Carnet, a shared gift card, or the other cross-promotions in `/notes/`.
+9. Whether they want a shared stamp card (Le Carnet), a shared gift card, or the other cross-promotions in `/notes/`.
 10. Halal: whether to promote it, and on what terms.
 11. GoDaddy access for barbesrestaurant.com (renewal Dec 6) and cafetati.com (DNS).
